@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Color Palette:
+   --color-primary: #000000; (Black)
+   --color-white: #FFFFFF;
+   --color-secondary: #1A1363; (Dark Blue)
+   --color-link: #666385; (Muted Grey/Blue for inactive links)
+   --color-logo-start: #7f67b5; (Approximation for the left side gradient color)
+   --color-logo-end: #e54c7d; (Approximation for the right side gradient color)
+*/
+
+:root {
+    --color-primary: #000000;
+    --color-white: #FFFFFF;
+    --color-secondary: #1A1363;
+    --color-link: #666385;
+    /* Custom colors to approximate the logo's gradient */
+    --color-logo-blue: #7f67b5;
+    --color-logo-pink: #e54c7d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Set the font to Poppins, falling back to sans-serif */
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-white);
+}
+
+/* --- Navbar Container --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom, matching the image */
+    padding: 10px 50px;
+    border-bottom: 1px solid transparent; /* Optional: adds a slight visual separation if needed */
+    height: 120px; /* Set a height to allow space for the logo */
+    position: relative;
+    max-width: 100%;
+}
+
+/* --- Logo Styling --- */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1; /* Tighter line height for the two lines of text */
+}
+
+.logo-one {
+    font-size: 55px; /* Large font size for the "One" */
+    font-weight: 500; /* Keeping a medium weight for "One" */
+    letter-spacing: -2px; /* Slight negative spacing to match the script style */
+    position: relative;
+    color: var(--color-primary); /* Default color for text */
+    /* Adjust text position */
+    padding-left: 20px; /* Space for the "O" shape */
+}
+
+/* Stylized 'O' Circle as a pseudo-element behind the 'O' text */
+.logo-one::before {
+    content: "";
+    position: absolute;
+    /* Adjusted top and left to better align with the 'O' character */
+    top: -10px; /* Adjust vertical position */
+    left: -10px; /* Adjust horizontal position */
+    width: 60px; /* Diameter of the circle */
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid transparent; /* Transparent border */
+    background-image: linear-gradient(var(--color-white), var(--color-white)), 
+                      linear-gradient(to right, var(--color-logo-blue) 0%, var(--color-logo-pink) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transform: rotate(20deg); /* Rotate for the specific look from the image */
+    z-index: 1; /* Ensure the circle is behind the 'O' text */
+}
+
+/* For the actual 'O' text to overlap */
+.logo-one::first-letter {
+    position: relative;
+    z-index: 2; /* Make sure the 'O' character sits on top of the circle */
+    /* You might need to adjust letter-spacing or word-spacing here if the 'O' feels too separate */
+    /* This method applies to the actual 'O' in "One" */
+    font-weight: 500; /* Ensure the 'O' itself has the correct weight */
+}
+
+.logo-event {
+    font-size: 24px;
+    font-weight: 700; /* Bold font weight for "Event" */
+    color: var(--color-primary);
+    margin-top: -15px; /* Pull "Event" up closer to "One" */
+    padding-left: 20px; /* Align "Event" text visually with "One" text */
+    position: relative; /* Needed for z-index or other positioning if desired */
+    z-index: 3; /* Ensure "Event" is also on top if overlapping */
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    padding: 10px 50px;
+    height: 120px; 
+    position: relative;
+    max-width: 100%;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-primary); 
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 10px; 
+    position: relative;
+}
+
+.nav-links a:not(.active) {
+    color: var(--color-link); 
+}
+
+.nav-links .active {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.nav-links .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+}
+/* --- Contact Section Styling --- */
+.contact-section {
+    padding: 80px 50px;
+    background-color: var(--color-white);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Use flexbox for the two main columns */
+    gap: 80px; /* Space between the form and the info blocks */
+    align-items: flex-start;
+}
+
+.contact-form-area {
+    flex-basis: 40%; /* Allocate 40% width to the form */
+    max-width: 450px;
+}
+
+.contact-info-area {
+    flex-basis: 60%; /* Allocate 60% width to the info */
+    padding-top: 65px; /* Adjust padding to vertically align with form inputs */
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between Vendors and Marketing blocks */
+}
+
+.contact-form-area h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+}
+
+/* --- Form Styling --- */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.contact-form-area input[type="text"],
+.contact-form-area input[type="tel"] {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #D0D0D0; /* Light border */
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-primary);
+}
+
+.contact-form-area input::placeholder {
+    color: #AAAAAA;
+}
+
+/* --- Contact Info Styling (Right Column) --- */
+.contact-info-block h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.contact-info-block p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #4A4A4A;
+}
+
+.contact-info-block a {
+    color: var(--color-primary); /* Use your primary brand color for links */
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column; /* Stack columns vertically */
+        gap: 40px;
+    }
+
+    .contact-form-area,
+    .contact-info-area {
+        flex-basis: 100%; /* Take full width */
+        max-width: 100%;
+        padding-top: 0;
+    }
+    
+    .contact-info-area {
+        gap: 30px;
+    }
+}
+/* --- Contact Section Styling --- */
+.contact-section {
+    padding: 80px 50px;
+    background-color: var(--color-white);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; 
+    gap: 80px; 
+    align-items: flex-start; /* Aligns content to the top */
+}
+
+.contact-form-area {
+    flex-basis: 45%; /* Slightly more width for the form */
+    max-width: 500px;
+}
+
+.contact-info-area {
+    flex-basis: 55%; 
+    padding-top: 65px; 
+    display: flex;
+    flex-direction: column;
+    gap: 40px; 
+}
+
+.contact-form-area h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+}
+
+/* --- Form Styling --- */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.contact-form-area input[type="text"],
+.contact-form-area input[type="tel"],
+.contact-form-area input[type="email"],
+.contact-form-area textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #D0D0D0; 
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-primary);
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    resize: vertical; /* Allows users to resize the message box vertically */
+}
+
+.contact-form-area textarea {
+    min-height: 150px; /* Gives a good default size for the message box */
+}
+
+.contact-form-area input::placeholder,
+.contact-form-area textarea::placeholder {
+    color: #AAAAAA;
+}
+
+/* --- Submit Button Styling (Matches the grey search button) --- */
+.send-message-button {
+    background-color: #CFCFCF; 
+    color: var(--color-primary); 
+    border: none;
+    border-radius: 5px;
+    padding: 15px 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 180px; /* Set max width to match the visual size in the image */
+}
+
+.send-message-button:hover {
+    background-color: #B0B0B0;
+}
+
+
+/* --- Contact Info Styling (Right Column) --- */
+.contact-info-block h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.contact-info-block p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #4A4A4A;
+}
+
+.contact-info-block a {
+    color: var(--color-primary); 
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column; 
+        gap: 40px;
+    }
+
+    .contact-form-area,
+    .contact-info-area {
+        flex-basis: 100%; 
+        max-width: 100%;
+        padding-top: 0;
+    }
+    
+    .contact-info-area {
+        gap: 30px;
+    }
+}
+</style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+           <img src="one.png" style="width: 190px;">
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="venue.html">Venue</a></li>
+                <li><a href="suppiler.html">Suppliers</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header> 
+    <img src="webring.png" style="width:1700px;">
+  
+    <section class="contact-section">
+        <div class="contact-container">
+            
+            <div class="contact-form-area">
+                <h1>Say Hello!</h1>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter Name">
+                </div>
+    
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" id="contactNumber" placeholder="Contact Number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="email" id="emailAddress" placeholder="Email Address">
+                </div>
+    
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="6" placeholder="Enter Your Message"></textarea>
+                </div>
+                
+                <button class="send-message-button">Submit</button>
+            </div>
+    
+            <div class="contact-info-area">
+                
+                <div class="contact-info-block">
+                    <h2>Vendors</h2>
+                    <p>If you are a registered vendor or a business looking to promote your brand on our portal, please send in your queries at <a href="mailto:vendors@comany.com">vendors@comany.com</a></p>
+                </div>
+    
+                <div class="contact-info-block">
+                    <h2>Marketing Collaborations</h2>
+                    <p>For brand collaborations - sponsored content, social media activations etc., please write into <a href="mailto:partnerships@comany.com">partnerships@comany.com</a></p>
+                </div>
+                
+                <div class="contact-info-block">
+                    <h2>Wedding Submissions</h2>
+                    <p>&lt;Company Name&gt; features wedding across cultures, styles and budgets. To submit your wedding, kindly email us 15–20 photos at <a href="mailto:submissions@comany.com">submissions@comany.com</a></p>
+                </div>
+    
+                <div class="contact-info-block">
+                    <h2>Careers</h2>
+                    <p>We are a team of passionate young minds looking to reinvent the wedding space. Please check our careers page for current openings and email us at <a href="mailto:hr@comany.com">hr@comany.com</a></p>
+                </div>
+    
+                <div class="contact-info-block">
+                    <h2>Customers</h2>
+                    <p>We love to hear from our precious users. Any feedback or queries simply write in to <a href="mailto:info@comany.com">info@comany.com</a></p>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    <img src="partys.png" style="width:1500px;">
+    <img src="footer.png" style="width:1700px;">
+    <srcipt src="script.js"></srcipt>
+</body>
+</html>

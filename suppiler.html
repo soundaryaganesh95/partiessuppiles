@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>suppilerpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Color Palette:
+   --color-primary: #000000; (Black)
+   --color-white: #FFFFFF;
+   --color-secondary: #1A1363; (Dark Blue)
+   --color-link: #666385; (Muted Grey/Blue for inactive links)
+   --color-logo-start: #7f67b5; (Approximation for the left side gradient color)
+   --color-logo-end: #e54c7d; (Approximation for the right side gradient color)
+*/
+
+:root {
+    --color-primary: #000000;
+    --color-white: #FFFFFF;
+    --color-secondary: #1A1363;
+    --color-link: #666385;
+    /* Custom colors to approximate the logo's gradient */
+    --color-logo-blue: #7f67b5;
+    --color-logo-pink: #e54c7d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Set the font to Poppins, falling back to sans-serif */
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-white);
+}
+
+/* --- Navbar Container --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom, matching the image */
+    padding: 10px 50px;
+    border-bottom: 1px solid transparent; /* Optional: adds a slight visual separation if needed */
+    height: 120px; /* Set a height to allow space for the logo */
+    position: relative;
+    max-width: 100%;
+}
+
+/* --- Logo Styling --- */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1; /* Tighter line height for the two lines of text */
+}
+
+.logo-one {
+    font-size: 55px; /* Large font size for the "One" */
+    font-weight: 500; /* Keeping a medium weight for "One" */
+    letter-spacing: -2px; /* Slight negative spacing to match the script style */
+    position: relative;
+    color: var(--color-primary); /* Default color for text */
+    /* Adjust text position */
+    padding-left: 20px; /* Space for the "O" shape */
+}
+
+/* Stylized 'O' Circle as a pseudo-element behind the 'O' text */
+.logo-one::before {
+    content: "";
+    position: absolute;
+    /* Adjusted top and left to better align with the 'O' character */
+    top: -10px; /* Adjust vertical position */
+    left: -10px; /* Adjust horizontal position */
+    width: 60px; /* Diameter of the circle */
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid transparent; /* Transparent border */
+    background-image: linear-gradient(var(--color-white), var(--color-white)), 
+                      linear-gradient(to right, var(--color-logo-blue) 0%, var(--color-logo-pink) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transform: rotate(20deg); /* Rotate for the specific look from the image */
+    z-index: 1; /* Ensure the circle is behind the 'O' text */
+}
+
+/* For the actual 'O' text to overlap */
+.logo-one::first-letter {
+    position: relative;
+    z-index: 2; /* Make sure the 'O' character sits on top of the circle */
+    /* You might need to adjust letter-spacing or word-spacing here if the 'O' feels too separate */
+    /* This method applies to the actual 'O' in "One" */
+    font-weight: 500; /* Ensure the 'O' itself has the correct weight */
+}
+
+.logo-event {
+    font-size: 24px;
+    font-weight: 700; /* Bold font weight for "Event" */
+    color: var(--color-primary);
+    margin-top: -15px; /* Pull "Event" up closer to "One" */
+    padding-left: 20px; /* Align "Event" text visually with "One" text */
+    position: relative; /* Needed for z-index or other positioning if desired */
+    z-index: 3; /* Ensure "Event" is also on top if overlapping */
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    padding: 10px 50px;
+    height: 120px; 
+    position: relative;
+    max-width: 100%;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-primary); 
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 10px; 
+    position: relative;
+}
+
+.nav-links a:not(.active) {
+    color: var(--color-link); 
+}
+
+.nav-links .active {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.nav-links .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+}
+
+</style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+           <img src="one.png" style="width: 190px;">
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="venue.html">Venue</a></li>
+                <li><a href="suppiler.html">Suppliers</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <img src="suppilers.png" style="margin-left: -5px;">
+    <section class="supplier-categories-section">
+        <h2 style="font-size: xx-large;margin-left: 4px;">Suppliers Categories</h2>
+    
+       <img src="image111.png" style="width:1500px;">
+       <img src="popular.png" style="width:1500px;">
+       <img src="trend.png" style="width:1500px;">
+       <img src="cheo.png" style="width:1500px;">
+       <img src="box.png" style="width:1500px;">
+       <img src="footer.png" style="width:1500px;margin-left: 9px;">
+    <script src="script.js"></script>
+</body>
+</html>

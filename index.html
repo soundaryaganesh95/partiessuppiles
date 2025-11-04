@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Event Navigation Bar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Color Palette:
+   --color-primary: #000000; (Black)
+   --color-white: #FFFFFF;
+   --color-secondary: #1A1363; (Dark Blue)
+   --color-link: #666385; (Muted Grey/Blue for inactive links)
+   --color-logo-start: #7f67b5; (Approximation for the left side gradient color)
+   --color-logo-end: #e54c7d; (Approximation for the right side gradient color)
+*/
+
+:root {
+    --color-primary: #000000;
+    --color-white: #FFFFFF;
+    --color-secondary: #1A1363;
+    --color-link: #666385;
+    /* Custom colors to approximate the logo's gradient */
+    --color-logo-blue: #7f67b5;
+    --color-logo-pink: #e54c7d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Set the font to Poppins, falling back to sans-serif */
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-white);
+}
+
+/* --- Navbar Container --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align items to the bottom, matching the image */
+    padding: 10px 50px;
+    border-bottom: 1px solid transparent; /* Optional: adds a slight visual separation if needed */
+    height: 120px; /* Set a height to allow space for the logo */
+    position: relative;
+    max-width: 100%;
+}
+
+/* --- Logo Styling --- */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1; /* Tighter line height for the two lines of text */
+}
+
+.logo-one {
+    font-size: 55px; /* Large font size for the "One" */
+    font-weight: 500; /* Keeping a medium weight for "One" */
+    letter-spacing: -2px; /* Slight negative spacing to match the script style */
+    position: relative;
+    color: var(--color-primary); /* Default color for text */
+    /* Adjust text position */
+    padding-left: 20px; /* Space for the "O" shape */
+}
+
+/* Stylized 'O' Circle as a pseudo-element behind the 'O' text */
+.logo-one::before {
+    content: "";
+    position: absolute;
+    /* Adjusted top and left to better align with the 'O' character */
+    top: -10px; /* Adjust vertical position */
+    left: -10px; /* Adjust horizontal position */
+    width: 60px; /* Diameter of the circle */
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid transparent; /* Transparent border */
+    background-image: linear-gradient(var(--color-white), var(--color-white)), 
+                      linear-gradient(to right, var(--color-logo-blue) 0%, var(--color-logo-pink) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transform: rotate(20deg); /* Rotate for the specific look from the image */
+    z-index: 1; /* Ensure the circle is behind the 'O' text */
+}
+
+/* For the actual 'O' text to overlap */
+.logo-one::first-letter {
+    position: relative;
+    z-index: 2; /* Make sure the 'O' character sits on top of the circle */
+    /* You might need to adjust letter-spacing or word-spacing here if the 'O' feels too separate */
+    /* This method applies to the actual 'O' in "One" */
+    font-weight: 500; /* Ensure the 'O' itself has the correct weight */
+}
+
+.logo-event {
+    font-size: 24px;
+    font-weight: 700; /* Bold font weight for "Event" */
+    color: var(--color-primary);
+    margin-top: -15px; /* Pull "Event" up closer to "One" */
+    padding-left: 20px; /* Align "Event" text visually with "One" text */
+    position: relative; /* Needed for z-index or other positioning if desired */
+    z-index: 3; /* Ensure "Event" is also on top if overlapping */
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    padding: 10px 50px;
+    height: 120px; 
+    position: relative;
+    max-width: 100%;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-primary); 
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 10px; 
+    position: relative;
+}
+
+.nav-links a:not(.active) {
+    color: var(--color-link); 
+}
+
+.nav-links .active {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.nav-links .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+}
+/* Color Palette:
+   --color-primary: #000000; (Black)
+   --color-white: #FFFFFF;
+   --color-secondary: #1A1363; (Dark Blue)
+   --color-link: #666385; (Muted Grey/Blue for inactive links)
+   --color-logo-blue: #7f67b5; (Approximation for the left side gradient color)
+   --color-logo-pink: #e54c7d; (Approximation for the right side gradient color)
+   --color-search-button: #CCCCCC; (Light grey for the search button)
+*/
+
+:root {
+    --color-primary: #000000;
+    --color-white: #FFFFFF;
+    --color-secondary: #1A1363;
+    --color-link: #666385;
+    --color-logo-blue: #7f67b5;
+    --color-logo-pink: #e54c7d;
+    --color-search-button-bg: #CCCCCC; /* Light grey */
+    --color-search-button-text: #666; /* Darker grey for text if button is light */
+    --color-dropdown-bg: #FFFFFF;
+    --color-dropdown-border: #E0E0E0; /* Slightly grey border for dropdowns */
+}
+
+/* Ensure Poppins font is loaded */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+}
+
+/* --- Hero Section Styling --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Adjust height as needed */
+    background-image: url('Rectangle 17.png'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-white); /* Text color for content over background image */
+}
+
+/* Optional: Overlay for better text readability */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay to make text pop */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em; /* Large, prominent heading */
+    font-weight: 700; /* Bold */
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+}
+
+/* --- Search Bar Container --- */
+.search-bar-container {
+    display: flex;
+    gap: 20px; /* Space between dropdowns and button */
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown select {
+    appearance: none; /* Remove default browser dropdown styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--color-dropdown-bg);
+    border: 1px solid var(--color-dropdown-border);
+    border-radius: 5px;
+    padding: 12px 15px;
+    padding-right: 40px; /* Space for custom arrow */
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: var(--color-primary);
+    cursor: pointer;
+    width: 250px; /* Fixed width for dropdowns */
+    height: 50px; /* Ensure consistent height */
+    text-align: left;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom SVG dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.dropdown select:focus {
+    outline: none;
+    border-color: var(--color-secondary); /* Highlight on focus */
+}
+
+.search-button {
+    background-color: var(--color-search-button-bg);
+    color: var(--color-primary); /* Text color for the button */
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 50px; /* Match height of dropdowns */
+    width: 150px; /* Fixed width for button */
+}
+
+.search-button:hover {
+    background-color: #A0A0A0; /* Slightly darker grey on hover */
+}
+
+/* Responsive Adjustments (Optional but Recommended) */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .search-bar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dropdown select,
+    .search-button {
+        width: 80%; /* Make elements wider on smaller screens */
+        max-width: 300px; /* Prevent them from getting too wide */
+    }
+}
+/* --- Categories Section Styling --- */
+.categories-section {
+    padding: 80px 50px; /* Top/bottom padding, left/right padding */
+    background-color: var(--color-white);
+    max-width: 1200px; /* Constrain width of the section */
+    margin: 0 auto; /* Center the section */
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align the view all link to the bottom of the heading */
+    margin-bottom: 40px;
+}
+
+.categories-header h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.2; /* Adjust line height for the heading */
+}
+
+.view-all {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 1em;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent "View All (10)" from wrapping */
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* --- Category Cards Container --- */
+.category-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    margin-bottom: 50px; /* Space between cards and pagination */
+}
+
+.category-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures image corners are rounded if card has border-radius */
+    text-align: left; /* Align text to the left */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.category-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.category-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border-radius: 8px; /* Match card border-radius */
+    margin-bottom: 15px; /* Space between image and text */
+}
+
+.category-card h3 {
+    font-size: 1.1em; /* Adjust font size as needed */
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 0 5px 15px; /* Padding around the text */
+    text-transform: uppercase; /* Match the uppercase style */
+    line-height: 1.3;
+}
+
+/* --- Pagination Styling --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between pagination items */
+    margin-top: 40px;
+}
+
+.pagination-arrow,
+.pagination-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Fixed width for circles/arrows */
+    height: 40px; /* Fixed height for circles/arrows */
+    border-radius: 50%; /* Make them circular */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-primary);
+    background-color: #E0E0E0; /* Light grey background */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-arrow.disabled {
+    opacity: 0.6; /* Dim disabled arrows */
+    pointer-events: none; /* Make them unclickable */
+}
+
+.pagination-number.active {
+    background-color: var(--color-primary); /* Dark background for active number */
+    color: var(--color-white); /* White text for active number */
+}
+
+.pagination-arrow:not(.disabled):hover,
+.pagination-number:not(.active):hover {
+    background-color: #C0C0C0; /* Slightly darker grey on hover */
+    color: var(--color-primary);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .categories-section {
+        padding: 50px 20px;
+    }
+
+    .categories-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .categories-header h2 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .category-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller min-width for cards */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-cards-container {
+        grid-template-columns: 1fr; /* Stack cards vertically on very small screens */
+    }
+}
+/* --- Popular Venue Section Styling --- */
+.popular-venue-section {
+    padding: 80px 50px; /* Top/bottom padding, left/right padding */
+    background-color: var(--color-white);
+    max-width: 1200px; /* Constrain width of the section */
+    margin: 0 auto; /* Center the section */
+}
+
+.popular-venue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align the view all link to the bottom of the heading */
+    margin-bottom: 40px;
+}
+
+.popular-venue-header h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+/* The .view-all link style is already defined from previous sections */
+
+/* --- Venue Cards Container (Similar to Category Cards) --- */
+.venue-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    margin-bottom: 50px; /* Space between cards and pagination */
+}
+
+.venue-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden; 
+    text-align: left; 
+    transition: transform 0.3s ease; 
+}
+
+.venue-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow on hover */
+}
+
+.venue-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for images */
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-bottom: 15px; 
+}
+
+.venue-card p {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 0 5px 15px; 
+    text-transform: uppercase; 
+    line-height: 1.3;
+}
+
+/* --- Pagination Styling --- */
+/* The .pagination, .pagination-arrow, .pagination-number, .active, .disabled, and hover styles
+   are already defined from previous sections and will apply here automatically. */
+
+
+/* --- Responsive Adjustments (Copy from categories-section if needed, or adjust) --- */
+@media (max-width: 768px) {
+    .popular-venue-section {
+        padding: 50px 20px;
+    }
+
+    .popular-venue-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .popular-venue-header h2 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .venue-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .venue-cards-container {
+        grid-template-columns: 1fr; 
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+           <img src="one.png" style="width: 190px;">
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="venue.html">Venue</a></li>
+                <li><a href="suppiler.html">Suppliers</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Your Wedding, Your Way</h1>
+            <div class="search-bar-container">
+                <div class="dropdown">
+                    <select id="categorySelect">
+                        <option value="">Select Category</option>
+                        
+                        <option value="decorators">Decorators</option>
+                        <option value="venue-planners">Venue Planners</option>
+                        <option value="choreographers">Choreographers</option>
+                        <option value="makeup-artist">Makeup Artist</option>
+                        <option value="bar-services">Bar Services</option>
+                        <option value="designers">Designers</option>
+                        <option value="celebrant">Celebrant</option>
+                        <option value="honeymoon">Honeymoon</option>
+                        <option value="photographer">Photographer</option>
+                        <option value="videographer">Videographer</option>
+                        
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <select id="locationSelect">
+                        <option value="">Select Location</option>
+                        
+                        <option value="chennai">Chennai</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="madurai">Madurai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="dubai">Dubai</option>
+                        <option value="kanniyakumari">Kanniyakumari</option>
+                        <option value="tirunelveli">Tirunelveli</option>
+                        <option value="bangaloure">Bangaloure</option>
+                        <option value="tiruvananthapuram">Tiruvananthapuram</option>
+                        <option value="kochi">Kochi</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    </div>
+                <button class="search-button">Search</button>
+            </div>
+        </div>
+    </section>
+                </div>
+                <section class="categories-section">
+                    <div class="categories-header">
+                        <h2>Browse By Category</h2>
+                        <a href="suppiler.html" class="view-all">View All (10)</a>
+                    </div>
+                
+                    <div class="category-cards-container">
+                        
+                        <div class="category-card">
+                            <img src="image 1.png" alt="Destination Weddings">
+                            <h3>DESTINATION WEDDINGS</h3>
+                        </div>
+                
+                        <div class="category-card">
+                            <img src="image 2.png" alt="Honeymoon & Travel Wedding">
+                            <h3>HONEYMOON & TRAVEL WEDDING</h3>
+                        </div>
+                
+                        <div class="category-card">
+                            <img src="image 3.png" alt="Videographers Wedding">
+                            <h3>VIDEOGRAPHERS WEDDING</h3>
+                        </div>
+                
+                        <div class="category-card">
+                            <img src="image4.png" alt="Celebrant">
+                            <h3>CELEBRANT</h3>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="pagination">
+                        <a href="#" class="pagination-arrow disabled">&lt;&lt;</a>
+                        <a href="#" class="pagination-number active">1</a>
+                        <a href="#" class="pagination-number">2</a>
+                        <a href="#" class="pagination-number">3</a>
+                        <a href="#" class="pagination-arrow">&gt;&gt;</a>
+                    </div>
+                </section>
+                <section class="popular-venue-section">
+                    <div class="popular-venue-header">
+                        <h2>Popular Venue</h2>
+                        <a href="venue.html" class="view-all">View All (1000)</a>
+                    </div>
+                
+                    <div class="venue-cards-container">
+                        
+                        <div class="venue-card">
+                            <img src="celeb.png" alt="Celebrant">
+                            <p>CELEBRANT</p>
+                        </div>
+                
+                        <div class="venue-card">
+                            <img src="makeup.png" alt="Makeup Artist">
+                            <p>MAKEUP ARTIST</p>
+                        </div>
+                
+                        <div class="venue-card">
+                            <img src="wedding.png" alt="Wedding Venue">
+                            <p>WEDDING VENUE</p>
+                        </div>
+                
+                        <div class="venue-card">
+                            <img src="dec.png" alt="Decorators">
+                            <p>DECORATORS</p>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="pagination">
+                        <a href="#" class="pagination-arrow disabled">&lt;&lt;</a>
+                        <a href="#" class="pagination-number active">1</a>
+                        <a href="#" class="pagination-number">2</a>
+                        <a href="#" class="pagination-number">3</a>
+                        <a href="#" class="pagination-arrow">&gt;&gt;</a>
+                    </div>
+                </section>
+                <img src="dreams.png" style="width:1500px;">
+                <img src="video.png" style="width:1500px;">
+                <img src="video1.png" style="width:1500px;">
+                <img src="review.png" style="width:1500px;">
+                <img src="footer.png" style="width:1700px;">
+                <script src="script.js"></script>         
+</body>
+</html>
